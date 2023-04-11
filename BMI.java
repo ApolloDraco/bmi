@@ -4,19 +4,35 @@
 */
 
 import java.util.Scanner;
+
 public class BMI {
 
     public static void main(String[] Strings) {
 
         Scanner input = new Scanner(System.in);
 
-        System.out.print("Input weight in pounds: ");
-        double weight = input.nextDouble();
+        // Input validation for weight
+        double weight;
+        do {
+            System.out.print("Enter weight in pounds: ");
+            weight = input.nextDouble();
+            if (weight < 0) {
+                System.out.println("Weight cannot be negative. Please enter a positive value.");
+            }
+        } while (weight < 0);
 
-        System.out.print("Input height in inches: ");
-        double inches = input.nextDouble();
+        // Input validation for height
+        double height;
+        do {
+            System.out.print("Enter height in inches: ");
+            height = input.nextDouble();
+            if (height <= 0) {
+                System.out.println("Height must be greater than zero. Please enter a valid value.");
+            }
+        } while (height <= 0);
 
-        double BMI = weight * 0.45359237 / (inches * 0.0254 * inches * 0.0254);
-        System.out.print("Body Mass Index is " + BMI);
+        // Calculate BMI and format output
+        double BMI = weight * 0.45359237 / (height * 0.0254 * height * 0.0254);
+        System.out.printf("Body Mass Index is %.2f", BMI);
     }
 }
